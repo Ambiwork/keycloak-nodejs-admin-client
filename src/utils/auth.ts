@@ -14,6 +14,7 @@ export interface Credentials {
   totp?: string;
   offlineToken?: boolean;
   refreshToken?: string;
+  scope?: string;
 }
 
 export interface Settings {
@@ -50,6 +51,7 @@ export const getToken = async (settings: Settings): Promise<TokenResponse> => {
     grant_type: credentials.grantType,
     client_id: credentials.clientId,
     totp: credentials.totp,
+    scope: credentials.scope,
     ...(credentials.offlineToken ? {scope: 'offline_access'} : {}),
     ...(credentials.refreshToken ? {
       refresh_token: credentials.refreshToken,
