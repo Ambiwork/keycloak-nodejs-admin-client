@@ -9,6 +9,7 @@ export interface Credentials {
     totp?: string;
     offlineToken?: boolean;
     refreshToken?: string;
+    scope?: string;
 }
 export interface Settings {
     realmName?: string;
