@@ -41,6 +41,7 @@ export declare class KeycloakAdminClient {
     accessToken: string;
     refreshToken: string;
     idToken: string;
+    expiresIn: string;
     keycloak: any;
     private requestConfig?;
     constructor(connectionConfig?: ConnectionConfig);
