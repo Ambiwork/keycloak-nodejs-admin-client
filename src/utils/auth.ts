@@ -28,6 +28,7 @@ export interface TokenResponse {
   expiresIn: string;
   refreshExpiresIn: number;
   refreshToken: string;
+  idToken: string;
   tokenType: string;
   notBeforePolicy: number;
   sessionState: string;

@@ -47,6 +47,7 @@ export class KeycloakAdminClient {
   public realmName: string;
   public accessToken: string;
   public refreshToken: string;
+  public idToken: string;
   public keycloak: any;
 
   private requestConfig?: AxiosRequestConfig;
@@ -77,7 +78,7 @@ export class KeycloakAdminClient {
   }
 
   public async auth(credentials: Credentials) {
-    const {accessToken, refreshToken} = await getToken({
+    const {accessToken, refreshToken, idToken} = await getToken({
       baseUrl: this.baseUrl,
       realmName: this.realmName,
       credentials,
@@ -85,6 +86,9 @@ export class KeycloakAdminClient {
     });
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
+    if (idToken) {
+      this.idToken = idToken;
+    }
   }
 
   public async init(init?, config?) {
