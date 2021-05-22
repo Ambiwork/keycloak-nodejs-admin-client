@@ -12,6 +12,8 @@ import UserSessionRepresentation from '../defs/userSessionRepresentation';
 import ResourceEvaluation from '../defs/resourceEvaluation';
 import GlobalRequestResult from '../defs/globalRequestResult';
 import Resource from './resource';
+import CertificateRepresentation from '../defs/certificateRepresentation';
+import KeyStoreConfig from '../defs/keystoreConfig';
 export interface ClientQuery {
     first?: number;
     max?: number;
@@ -448,6 +450,42 @@ export declare class Clients extends Resource<{
     } & {
         realm?: string;
     }) => Promise<GlobalRequestResult>;
+    getKeyInfo: (payload?: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }) => Promise<CertificateRepresentation>;
+    generateKey: (payload?: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }) => Promise<CertificateRepresentation>;
+    downloadKey: (query: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }, payload: KeyStoreConfig) => Promise<string>;
+    generateAndDownloadKey: (query: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }, payload: KeyStoreConfig) => Promise<string>;
+    uploadKey: (query: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }, payload: any) => Promise<any>;
+    uploadCertificate: (query: {
+        id: string;
+        attr: string;
+    } & {
+        realm?: string;
+    }, payload: any) => Promise<any>;
     constructor(client: KeycloakAdminClient);
     findProtocolMapperByName(payload: {
         realm?: string;

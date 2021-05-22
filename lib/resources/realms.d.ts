@@ -5,7 +5,9 @@ import EventRepresentation from '../defs/eventRepresentation';
 import EventType from '../defs/eventTypes';
 import KeysMetadataRepresentation from '../defs/keyMetadataRepresentation';
 import ClientInitialAccessPresentation from '../defs/clientInitialAccessPresentation';
+import TestLdapConnectionRepresentation from '../defs/testLdapConnection';
 import { KeycloakAdminClient } from '../client';
+import { RealmEventsConfigRepresentation } from '../defs/realmEventsConfigRepresentation';
 export declare class Realms extends Resource {
     find: (payload?: {}) => Promise<RealmRepresentation[]>;
     create: (payload?: RealmRepresentation) => Promise<{
@@ -36,6 +38,18 @@ export declare class Realms extends Resource {
         type?: EventType;
         user?: string;
     }) => Promise<EventRepresentation[]>;
+    getConfigEvents: (payload?: {
+        realm: string;
+    }) => Promise<RealmEventsConfigRepresentation>;
+    updateConfigEvents: (query: {
+        realm: string;
+    }, payload: RealmEventsConfigRepresentation) => Promise<void>;
+    clearEvents: (payload?: {
+        realm: string;
+    }) => Promise<void>;
+    clearAdminEvents: (payload?: {
+        realm: string;
+    }) => Promise<void>;
     getClientsInitialAccess: (payload?: {
         realm: string;
     }) => Promise<ClientInitialAccessPresentation[]>;
@@ -84,5 +98,8 @@ export declare class Realms extends Resource {
     getKeys: (payload?: {
         realm: string;
     }) => Promise<KeysMetadataRepresentation>;
+    testLDAPConnection: (query: {
+        realm: string;
+    }, payload: TestLdapConnectionRepresentation) => Promise<any>;
     constructor(client: KeycloakAdminClient);
 }
